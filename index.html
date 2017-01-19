@@ -19,12 +19,20 @@ Released under the MIT license: http://jsbin.mit-license.org
 </head>
 <body>
 
+ <div id="searchbar">
+    <input type="text" id="search">
+  </div>
+  <div id="searchresults">
+  </div>
+
 <script id="jsbin-javascript">
 axios.get('https://api.nal.usda.gov/ndb/search/?format=json&q=' + 'apple' + '&sort=n&max=25&offset=0&api_key=6P0TtTKUCWh2ZaJ6ahBG2HfCz5HUWlPpapkNZEyH')
   .then(function(response){
     console.log(response.data); 
   $.each (response.data.list.item , function(index, food) {
     console.log(food.name);
+        $("#searchresults").append("<li>" + food.name + "</li>");
+
   });   
   }); 
 </script>
