@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Ozan Ödev</title>
+	<title>Ozan Ödev - Search</title>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<h1>heyyoo</h1>
-{{name}}
 <form action="/search" method="get">
 	<p>
 		<label>search here...</label>
@@ -15,6 +13,19 @@
 	</p>
 	
 </form>
+<h2>Search Results</h2>
+<p>
+	Results for <strong>{{search_query}}</strong>
+</p>
+<div>
+	<ul>
+		{% for item in search_results.list.item %}
+			<li>
+				<a href = "/food_detail?ndbno={{item.ndbno}}">  {{item.name}} </a>
+			</li>
+		{% endfor %}
+	</ul>
 
+</div>
 </body>
 </html>
