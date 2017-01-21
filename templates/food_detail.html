@@ -13,11 +13,17 @@
 	<ul>
 		{% for item in nut_results.report.food.nutrients %}
 			<li>
-				 <strong>{{item.name}}</strong> : {{item.value}} {{item.unit}}
+				 <strong>{{item.name}}</strong> : {{item.value}} {{item.unit}} 
+				 {% for item in item.measures %}
+				 	value for {{item.qty}} {{item.label}} = {{item.eqv}} {{item.eunit}} 
+
+				 {% endfor %}
 			</li>
 		{% endfor %}
 	</ul>
-
+	<form action="javascript:history.back()">
+    	<input type="submit" value="<< Back to Results" />
+	</form>
 </div>
 </body>
 </html>
