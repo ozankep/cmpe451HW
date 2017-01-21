@@ -11,5 +11,10 @@ def search(request):
 	search_results = requests.get(search_url)
 	return render(request, 'search.html', {'search_query': search_query, 'search_results': search_results.json()})
 
+def food_detail(request):
+	nut_id = request.GET.get('ndbno')
+	nut_url = 'https://api.nal.usda.gov/ndb/reports/?&type=b&format=json&api_key=6P0TtTKUCWh2ZaJ6ahBG2HfCz5HUWlPpapkNZEyH&ndbno={}'.format(nut_id)
+	nut_results = requests.get(nut_url)
+	return render(request, 'food_detail.html', {'nut_results': nut_results.json()})
 
 

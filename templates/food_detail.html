@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ozan Ödev - Food Detail</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<p>
+	Results for <strong>{{nut_results.report.food.name}}</strong>
+</p>
+<div>
+	<ul>
+		{% for item in nut_results.report.food.nutrients %}
+			<li>
+				 <strong>{{item.name}}</strong> : {{item.value}} {{item.unit}}
+			</li>
+		{% endfor %}
+	</ul>
+
+</div>
+</body>
+</html>
