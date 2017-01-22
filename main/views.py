@@ -3,7 +3,7 @@ import requests
 
 # Create your views here.
 def index(request):
-	return render(request, 'index.html', {'name': 'Ozan'})
+	return render(request, 'index.html', {})
 
 def search(request):
 	search_query = request.GET.get('squery')
@@ -15,6 +15,9 @@ def food_detail(request):
 	nut_id = request.GET.get('ndbno')
 	nut_url = 'https://api.nal.usda.gov/ndb/reports/?&type=b&format=json&api_key=6P0TtTKUCWh2ZaJ6ahBG2HfCz5HUWlPpapkNZEyH&ndbno={}'.format(nut_id)
 	nut_results = requests.get(nut_url)
-	return render(request, 'food_detail.html', {'nut_results': nut_results.json()})
+	data = nut_results.json()
+	qty = data['report']['food']['nutrients'][0]['measures'][0]['qty']
+	amount = request.GET.get('amount', qty)
+	return render(request, 'food_detail.html', {'nut_results': nut_results.json(), 'qty' : qty, 'amount' : amount })
 
 

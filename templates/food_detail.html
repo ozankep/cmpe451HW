@@ -1,29 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Ozan Ödev - Food Detail</title>
+	<title>Food Detail</title>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
+<style type="text/css">
+	.red{
+		color : red;
+	}
+</style>
 <body>
 
 <p>
 	Results for <strong>{{nut_results.report.food.name}}</strong>
+	
 </p>
 <div>
+	<form method="get" action="/food_detail">
+	<p>
+		<label>Calculate nutrients for </label>
+		<input type="text" name="amount" value="{{amount}}">
+		<input type="hidden" name="ndbno" value="{{nut_results.report.food.ndbno}}">
+		<label> {{nut_results.report.food.nutrients.0.measures.0.label}} </label>
+		<label> ( {{nut_results.report.food.nutrients.0.measures.0.eqv}} {{nut_results.report.food.nutrients.0.measures.0.eunit}} )</label>
+		
+
+	</p>
+	<strong>---- Nutrients List ---</strong>
 	<ul>
 		{% for item in nut_results.report.food.nutrients %}
 			<li>
-				 <strong>{{item.name}}</strong> : {{item.value}} {{item.unit}} 
-				 {% for item in item.measures %}
-				 	value for {{item.qty}} {{item.label}} = {{item.eqv}} {{item.eunit}} 
-
-				 {% endfor %}
-			</li>
+				 <strong>{{item.name}}</strong> : <span class="red"> {% widthratio item.value qty amount %} {{item.unit}}</span>				 		
+	 		</li>
 		{% endfor %}
 	</ul>
-	<form action="javascript:history.back()">
-    	<input type="submit" value="<< Back to Results" />
-	</form>
+    <a href = "/" > << Back to Search
 </div>
 </body>
 </html>
