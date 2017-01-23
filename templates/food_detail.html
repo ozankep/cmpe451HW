@@ -22,15 +22,14 @@
 		<input type="text" name="amount" value="{{amount}}">
 		<input type="hidden" name="ndbno" value="{{nut_results.report.food.ndbno}}">
 		<label> {{nut_results.report.food.nutrients.0.measures.0.label}} </label>
-		<label> ( {{nut_results.report.food.nutrients.0.measures.0.eqv}} {{nut_results.report.food.nutrients.0.measures.0.eunit}} )</label>
-		
-
+		<label> ( {{nut_results.report.food.nutrients.0.measures.0.eqv}} {{nut_results.report.food.nutrients.0.measures.0.eunit}} )</label>		
 	</p>
 	<strong>---- Nutrients List ---</strong>
 	<ul>
 		{% for item in nut_results.report.food.nutrients %}
 			<li>
-				 <strong>{{item.name}}</strong> : <span class="red"> {% widthratio item.value qty amount %} {{item.unit}}</span>				 		
+				 {% widthratio item.measures.0.value qty amount as amount_new %}
+				 <strong>{{item.name}}</strong> : <span class="red"> {{amount_new}} {{item.unit}}</span>				 		
 	 		</li>
 		{% endfor %}
 	</ul>
