@@ -16,6 +16,11 @@
 	
 </p>
 <div>
+	{% if error_message %}
+			<p style="color:red; font-weight: bold;">
+				{{error_message}}
+			</p>
+	{% endif %}
 	<form method="get" action="/food_detail">
 	<p>
 		<label>Calculate nutrients for </label>
@@ -24,6 +29,7 @@
 		<label> {{nut_results.report.food.nutrients.0.measures.0.label}} </label>
 		<label> ( {{nut_results.report.food.nutrients.0.measures.0.eqv}} {{nut_results.report.food.nutrients.0.measures.0.eunit}} )</label>			
 	</p>
+	{% if not error_message %} 
 	<strong>---- Nutrients List ---</strong>
 	<ul>
 		{% for item in nut_results.report.food.nutrients %}
@@ -33,6 +39,7 @@
 	 		</li>
 		{% endfor %}
 	</ul>
+	{% endif %}
     <a href = "/" > << Back to Search
 </div>
 </body>

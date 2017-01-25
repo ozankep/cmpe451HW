@@ -17,7 +17,12 @@ def food_detail(request):
 	nut_results = requests.get(nut_url)
 	data = nut_results.json()
 	qty = data['report']['food']['nutrients'][0]['measures'][0]['qty']
-	amount = request.GET.get('amount', qty) #helps not to see an empty text box
-	return render(request, 'food_detail.html', {'nut_results': nut_results.json(), 'qty' : qty, 'amount' : amount })
+	error_message = None
+	try:
+		amount = float(request.GET.get('amount', qty)) #helps not to see an empty text box
+	except:
+		error_message = "Please enter only a number"
+		amount = qty
+	return render(request, 'food_detail.html', {'nut_results': nut_results.json(), 'qty' : qty, 'amount' : amount, "error_message": error_message })
 
 
