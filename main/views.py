@@ -17,7 +17,7 @@ def food_detail(request):
 	nut_results = requests.get(nut_url)
 	data = nut_results.json()
 	qty = data['report']['food']['nutrients'][0]['measures'][0]['qty']
-	amount = request.GET.get('amount', qty)
+	amount = request.GET.get('amount', qty) #helps not to see an empty text box
 	return render(request, 'food_detail.html', {'nut_results': nut_results.json(), 'qty' : qty, 'amount' : amount })
 
 

@@ -19,10 +19,10 @@
 	<form method="get" action="/food_detail">
 	<p>
 		<label>Calculate nutrients for </label>
-		<input type="text" name="amount" value="{{amount}}">
-		<input type="hidden" name="ndbno" value="{{nut_results.report.food.ndbno}}">
+		<input type="text" name="amount" value="{{amount}}"> <!-- variable for views.py -->
+		<input type="hidden" name="ndbno" value="{{nut_results.report.food.ndbno}}"> <!-- variable for views.py -->
 		<label> {{nut_results.report.food.nutrients.0.measures.0.label}} </label>
-		<label> ( {{nut_results.report.food.nutrients.0.measures.0.eqv}} {{nut_results.report.food.nutrients.0.measures.0.eunit}} )</label>		
+		<label> ( {{nut_results.report.food.nutrients.0.measures.0.eqv}} {{nut_results.report.food.nutrients.0.measures.0.eunit}} )</label>			
 	</p>
 	<strong>---- Nutrients List ---</strong>
 	<ul>
